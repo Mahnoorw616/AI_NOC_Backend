@@ -16,10 +16,8 @@ class LogMessage(BaseModel):
 async def ingest_logs(log: LogMessage):
     redis_client.lpush("log_queue", json.dumps(log.dict()))
     return {"status": "success"}
-
-# =========================================================
-# MAGIC BUTTONS 1-7: METRICS (For Isolation Forest)
-# =========================================================
+ 
+# MAGIC BUTTONS 1-7: METRICS (For Isolation Forest) 
 
 @app.post("/ingest/simulate/normal")
 async def simulate_normal():
@@ -62,10 +60,8 @@ async def simulate_ping_flood():
     data = {"device_name": "Gateway-01", "flow_duration": 5.0, "fwd_pkts_tot": 10000.0, "bwd_pkts_tot": 10000.0, "timestamp": str(time.time())}
     redis_client.lpush("metric_queue", json.dumps(data))
     return {"status": "success", "message": "7. Ping Flood queued!"}
-
-# =========================================================
-# MAGIC BUTTONS 8-10: TEXT LOGS (For DistilBERT)
-# =========================================================
+ 
+# MAGIC BUTTONS 8-10: TEXT LOGS (For DistilBERT) 
 
 @app.post("/ingest/simulate/brute-force")
 async def simulate_brute_force():
